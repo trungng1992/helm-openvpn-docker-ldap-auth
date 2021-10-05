@@ -137,6 +137,10 @@ openvpn:
     # janedoe: "ifconfig-push 10.240.100.20 10.240.100.21"
   ldap:
     enabled: true
+    url: ldap://10.10.10.10
+    binddn: cn=readonly,ou=system,dc=demo,dc=com
+    password: P@ssword
+    basedn: ou=vpn,dc=demo,dc=com
     
 nodeSelector: {}
 tolerations: []
