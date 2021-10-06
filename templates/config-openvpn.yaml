@@ -62,6 +62,9 @@ data:
 {{- else }}
       remote ${MY_IP_ADDR} {{ .Values.service.externalPort }} {{ .Values.openvpn.OVPN_PROTO }}
 {{- end }}
+      {{ if .Values.openvpn.ldap.enabled }}
+      auth-user-pass
+      {{- end }}
       {{ if .Values.openvpn.cipher }}
       cipher {{ .Values.openvpn.cipher }}
       {{- end }}

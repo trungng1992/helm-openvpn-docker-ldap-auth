@@ -21,6 +21,16 @@ helm -n openvpn install . openvpn
 
 Edit file values.yaml to customize openvpn server.
 
+# Generate new config for openvpn
+
+``` shell
+KEY_NAME="trungn"
+SERVICE_IP="10.10.10.10"
+
+kubectl --namespace openvpn exec -it "$POD_NAME" /etc/openvpn/setup/newClientCert.sh "$KEY_NAME" "$SERVICE_IP"
+kubectl --namespace openvpn exec -it "$POD_NAME" cat "/etc/openvpn/certs/pki/$KEY_NAME.ovpn" > "$KEY_NAME.ovpn"
+```
+
 # Reference
 
 - https://github.com/helm/charts/tree/master/stable/openvpn
