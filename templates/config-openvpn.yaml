@@ -162,6 +162,8 @@ data:
       sed 's|NETWORK|'"${NETWORK}"'|' -i /etc/openvpn/openvpn.conf
       sed 's|NETMASK|'"${NETMASK}"'|' -i /etc/openvpn/openvpn.conf
 
+      cp -f /etc/openvpn/setup/ldap.conf /etc/openvpn/
+
       # exec openvpn process so it receives lifecycle signals
       exec openvpn --config /etc/openvpn/openvpn.conf
   openvpn.conf: |-
@@ -195,7 +197,7 @@ data:
       group nogroup
 
 {{ if .Values.openvpn.ldap.enabled }}
-      plugin /usr/lib/openvpn-auth-ldap.so "/etc/openvpn/ldap.conf"
+      plugin /usr/local/lib/openvpn-auth-ldap.so "/etc/openvpn/ldap.conf"
 {{ end }}
 
 {{ if .Values.openvpn.ccd.enabled }}
